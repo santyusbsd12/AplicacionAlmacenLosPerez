@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/Layout :: head"></head>
+
+<body class="bg-dark">
+
+	<header th:replace="fragments/Layout :: header"></header>
+
+	<div class="container">
+		<h1
+			class="text-primary border border-success border-left-0 border-right-0 text-center pb-2 mt-3"
+			th:text="${titulo}"></h1>
+
+		<form th:action="@{/Producto/formularioProducto}" th:object="${producto}" method="POST" class="container w-50 text-center mb-3 bg-secondary rounded p-4">
+			
+			<div class="mb-3">
+				<div class="text-left ml-3">
+					<label for="fecha" class="form-label text-light text-start ps-3">Nombre del producto</label>
+				</div>
+				<input 
+				   type="text" 
+				   class="form-control" 
+				   id="nombreProducto" placeholder="Nombre del producto" th:field="*{nombreProducto}" th:errorclass="'form-control alert-danger'"/>	
+				<span th:if="${#fields.hasErrors('nombreProducto')}" th:errors="*{nombreProducto}" class="badge bg-danger"></span>			
+			</div>
+
+			<div class="mb-3">
+				<div class="text-left ml-3">
+					<label for="fecha" class="form-label text-light text-start ps-3">Fecha de compra</label>
+				</div>
+				<input type="date" class="form-control" id="fechaIngreso"
+					th:field="*{fechaIngreso}"
+					th:errorclass="'form-control alert-danger'" /> <span
+					th:if="${#fields.hasErrors('fechaIngreso')}"
+					th:errors="*{fechaIngreso}" class="badge bg-danger"></span>
+			</div>
+
+			<div class="mb-3">
+			    <div class="text-left ml-3">
+					<label for="fecha" class="form-label text-light text-start ps-3">Precio de compra del producto (Unidad)</label>
+				</div>
+				<input type="number" class="form-control" id="precioCompraProducto" placeholder="Precio de compra del producto" th:field="*{precioCompraProducto}" th:errorclass="'form-control alert-danger'"/>
+			    <span th:if="${#fields.hasErrors('precioCompraProducto')}" th:errors="*{precioCompraProducto}" class="badge bg-danger"></span>
+			</div>
+			
+			<div class="mb-3">
+			    <div class="text-left ml-3">
+					<label for="fecha" class="form-label text-light text-start ps-3">Precio de venta del producto (Por Unidad)</label>
+				</div>
+				<input type="number" class="form-control" id="precioVentaProducto" placeholder="Precio de venta del producto" th:field="*{precioVentaProducto}" th:errorclass="'form-control alert-danger'"/>
+			    <span th:if="${#fields.hasErrors('precioVentaProducto')}" th:errors="*{precioVentaProducto}" class="badge bg-danger"></span>
+			</div>
+			
+			<div class="mb-3">
+				<div class="text-left ml-3">
+					<label for="fecha" class="form-label text-light text-start ps-3">Cantidad de productos</label>
+				</div>
+				<input type="number" class="form-control" id="cantidadProducto" placeholder="Cantidad de productos comprados" th:field="*{cantidadStock}" th:errorclass="'form-control alert-danger'"/>
+			    <span th:if="${#fields.hasErrors('cantidadStock')}" th:errors="*{cantidadStock}" class="badge bg-danger"></span>
+			</div>	
+						
+			<button type="submit" class="btn btn-primary" th:if="${idProducto == null}">Agregar producto</button>			
+			<button type="submit" class="btn btn-warning" th:unless="${idProducto == null}">Guardar cambios</button>			
+		</form>
+	</div>
+	
+	<footer th:replace="fragments/Layout :: footer"></footer>
+</body>
+</html>

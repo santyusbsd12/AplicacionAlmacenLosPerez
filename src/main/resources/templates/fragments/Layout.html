@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="ISO-8859-1" />
+<title th:text="'Variedades los Perez: ' + ${titulo}"></title>
+
+<!-- Estilos CSS de Boostrap -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+			<a class="navbar-brand" href="#">Inicio</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Productos </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/Producto/listar}">Listado productos</a> 
+							<a class="dropdown-item" th:href="@{/Producto/formularioProducto}">Agregar producto</a>
+							<a class="dropdown-item" th:href="@{/Producto/ImportarProductosMasivosFormulario}">Importar productos masivos</a>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<div class="container">
+			<div class="alert alert-success" th:if="${success != null}"
+				th:text="${success}"></div>
+			<div class="alert alert-danger" th:if="${danger != null}"
+				th:text="${danger}"></div>
+			<div class="alert alert-warning" th:if="${warning != null}"
+				th:text="${warning}"></div>
+			<div class="alert alert-info" th:if="${info != null}"
+				th:text="${info}"></div>
+		</div>
+	</header>
+
+	<footer th:fragment="footer" class="container">
+		<!-- SCRIPTS DE BOOTSTRAP -->
+		<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	</footer>
+
+</body>
+</html>
